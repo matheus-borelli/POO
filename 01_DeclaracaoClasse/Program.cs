@@ -90,6 +90,16 @@ namespace _01_DeclaracaoClasse
 
             Console.WriteLine($"Saldo Atual: {contaMatheus.ConsultarSaldo()}");
 
+            Aluno alunoMatheus = new Aluno();
+
+            alunoMatheus.Codigo = 1;
+            alunoMatheus.Nome = "Matheus Yuri";
+            alunoMatheus.LancarNota(1, 8.6);
+            alunoMatheus.LancarNota(2, 9.0);
+            alunoMatheus.LancarNota(3, 9.5);
+            alunoMatheus.LancarNota(4, 10.0);
+
+            Console.WriteLine($"Aluno {alunoMatheus.Nome} {alunoMatheus.Mencao()} com média de {alunoMatheus.CalcularMedia():00}");
         }
 
     }
@@ -287,9 +297,10 @@ public class Aluno
     public string Mencao()
     {
         // Aprovado se a média for >= 5.0
-        if (CalcularMedia() >= 5.0)
-            return "Aprovado";
-        else
-            return "Reprovado";
+        //if (CalcularMedia() >= 5.0)
+        //  return "Aprovado";
+        // else
+        // return "Reprovado";
+        return (CalcularMedia() >= 5.0) ? "Aprovado" : "Reprovado";
     }
 }
