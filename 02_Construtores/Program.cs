@@ -77,6 +77,9 @@ namespace _02_Construtores
 
         {
             if (Lado > 0)
+
+
+
             this.Lado = Lado; //"this" indica que estamos acessando o atributo (o membro "Lado") da própria classe.
 
         }
