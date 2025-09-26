@@ -13,7 +13,7 @@ namespace _13_ColecaoPilha
 
             for (int i = 0; i < 5; i++)
             {
-                Console.Write($"Digite o {i + 1}º número: ");
+                Console.Write($"Digite o {i + 1}º número: "); //i + 1 volta para valor i
                 int numero = int.Parse(Console.ReadLine());
                 pilha.Push(numero);// push enumera as pilhas
             }
