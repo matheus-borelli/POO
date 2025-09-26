@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,57 @@ namespace _10_Colecoes
                // Console.WriteLine($" -ID: {aluno.id} Nome: {aluno.Nome}");
                aluno.ImprimirAluno();
             }
+            Dictionary<int, String> dicNomes = new Dictionary<int, String>();
+            dicNomes.Add(1, "Gustavo");
+            dicNomes.Add(2, "Celso");
+            dicNomes.Add(3, "Suely");
+            //Não adicionar chave duplicada no Dictionary
+            //dicNomes.Add(3, "Suely")
+            Console.WriteLine("Impressão dos dicNomes");
+            for (int i = 1; i <= dicNomes.Count; i++)//não iniciar com 0 
+            {
+                Console.WriteLine($" - {dicNomes[i]}");
+            }
+            Dictionary<int, Aluno> dicAlunos = new Dictionary<int, Aluno>();
+            dicAlunos.Add(suely.id, suely);
+            dicAlunos.Add(celso.id, celso);
+
+            Console.WriteLine("impressão dos dicAlunos");
+            //for (int i = 1; i <= dicAlunos.Count; i++)
+           // {
+           //     dicAlunos[i].ImprimirAluno();
+           // }
+            foreach (Aluno aluno in dicAlunos.Values)
+            {
+                aluno.ImprimirAluno();
+            }
+
+            Queue <String> filaNomes = new Queue<String>();
+            filaNomes.Enqueue("Gustavo");
+            filaNomes.Enqueue("Celso");
+            filaNomes.Enqueue("Suely");
+            Console.WriteLine("Impressão dos filaNomes");
+            Console.WriteLine($" 1º) {filaNomes.Dequeue()}");
+
+            foreach (String nome in filaNomes)
+            {
+                Console.WriteLine($" - {nome}" );
+            }
+
+            Stack<String> stackNomes = new Stack<String>();
+            stackNomes.Push("Gustavo");
+            stackNomes.Push("Celso");
+            stackNomes.Push("Suely");
+
+            Console.WriteLine("Impressão dos stackNomes");
+            Console.WriteLine($"1° {stackNomes.Pop()}");
+
+            foreach (String nome in stackNomes)
+            {
+                Console.WriteLine($" - {nome}");
+            }
+             
+
             
         }
         class Aluno
