@@ -37,7 +37,7 @@ namespace _15_ColecaoDicionario
             Console.WriteLine("\nLISTA DE ALUNOS");
             foreach (var aluno in alunos)
             {
-                Console.WriteLine($"RA: {aluno.Key} - Nome: {aluno.Value}");// ra ID e Nome string
+                Console.WriteLine($"RA: {aluno.Key} - Nome: {aluno.Value}");// ra ID(Key) e Nome string(Value)
             }
 
             Console.ReadKey();
