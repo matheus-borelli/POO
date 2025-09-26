@@ -86,9 +86,23 @@ namespace _10_Colecoes
             {
                 Console.WriteLine($" - {nome}");
             }
-             
+             HashSet<String> setNomes = new HashSet<String>();
+            setNomes.Add("Gustavo");
+            setNomes.Add("Celso");
+            setNomes.Add("Suely");
+            //ignora valores Duplicados
+            setNomes.Add("Gustavo");
+            setNomes.Add("Celso");
+            setNomes.Add("Suely");
 
-            
+            Console.WriteLine("Impressão dos setNomes");
+            foreach (String nome in setNomes)
+            {
+                Console.WriteLine($" - {nome}");
+            }
+
+
+
         }
         class Aluno
         {
