@@ -21,4 +21,15 @@ namespace _17_Calendario
         Novembro,
         Dezembro
     }
+    public enum DiaDaSemana
+    {
+        Domingo = 0, // O DateTime.DayOfWeek retorna 0 para Domingo
+        Segunda,     // 1
+        Terca,       // 2
+        Quarta,      // 3
+        Quinta,      // 4
+        Sexta,       // 5
+        Sabado       // 6
+    }
 }
+

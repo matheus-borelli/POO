@@ -26,10 +26,8 @@ namespace _17_Calendario
         {
             int diasDoMes = DateTime.DaysInMonth(ano, (int)mes);
 
-            //primeiroDiaMes = new DateTime(ano, mes, 1);
             int diaSemanaInicio = (int)primeiroDiaMes.DayOfWeek;
 
-            //calendario = new int[6, 7];
             int dia = 1;
 
             for (int semana = 0; semana < 6; semana++)
@@ -49,55 +47,9 @@ namespace _17_Calendario
             }
         }
 
-        public void ImprimirCalendario()
-        {
-            Console.WriteLine($"\nCalendário de " +
-                                $"{primeiroDiaMes.ToString("MMMM")} de {ano}");
-
-            Console.WriteLine("DOM\tSEG\tTER\tQUA\tQUI\tSEX\tSAB");
-
-            List<Feriado> diasFeriados = RetornaFeriados();
-            //bool ehFeriado;
-
-            //impressão do calendário
-            for (int semana = 0; semana < 6; semana++)
-            {
-                for (int diaSemana = 0; diaSemana < 7; diaSemana++)
-                {
-                    if (calendario[semana, diaSemana] != 0)
-                    {
-
-                        if (diasFeriados.Any(feriado => feriado != null && feriado.dia == calendario[semana, diaSemana]) || diaSemana == 0)
-                            Console.ForegroundColor = ConsoleColor.Red;
-
-                        Console.Write(calendario[semana, diaSemana].ToString("D2") + "\t");
-
-                        Console.ResetColor();
-                    }
-                    else
-                    {
-                        Console.Write("\t");
-                    }
-                }
-                Console.WriteLine();
-            }
-
-            Console.Write("\nFeriados: ");
-
-            foreach (Feriado diaFeriado in diasFeriados)
-            {
-                if (diaFeriado != null)
-                    Console.Write($"{diaFeriado.Dia:D2}-{diaFeriado.Descricao} \t");
-
-            }
-
-        }
-
         private List<Feriado> RetornaFeriados()
         {
             List<Feriado> feriados = new List<Feriado>();
-
-            //int indice = 0;
 
             if (mes == Mes.Janeiro) feriados.Add(new Feriado(1, "Confraternização Universal"));
             else if (mes == Mes.Abril)
@@ -120,6 +72,7 @@ namespace _17_Calendario
                 feriados.Add(new Feriado(8, "Padroeira da Cidade"));
                 feriados.Add(new Feriado(25, "Natal"));
             }
+
             DateTime domingoDePascoa = DomingoDePascoa();
 
             DateTime carnaval = domingoDePascoa.AddDays(-47);
@@ -138,8 +91,6 @@ namespace _17_Calendario
             if ((Mes)CorpuChrist.Month == mes)
                 feriados.Add(new Feriado(CorpuChrist.Day, "Corpus Christi"));
 
-            //Array.Sort(feriados);
-
             return feriados;
         }
 
@@ -148,36 +99,12 @@ namespace _17_Calendario
             DateTime domingoDePascoa;
             int X = 0, Y = 0, a, b, c, d, g, dia, mes;
 
-            if (ano <= 1699)
-            {
-                X = 22;
-                Y = 2;
-            }
-            else if (ano <= 1799)
-            {
-                X = 23;
-                Y = 3;
-            }
-            else if (ano <= 1899)
-            {
-                X = 24;
-                Y = 4;
-            }
-            else if (ano <= 2099)
-            {
-                X = 24;
-                Y = 5;
-            }
-            else if (ano <= 2199)
-            {
-                X = 24;
-                Y = 6;
-            }
-            else if (ano <= 2299)
-            {
-                X = 24;
-                Y = 7;
-            }
+            if (ano <= 1699) { X = 22; Y = 2; }
+            else if (ano <= 1799) { X = 23; Y = 3; }
+            else if (ano <= 1899) { X = 24; Y = 4; }
+            else if (ano <= 2099) { X = 24; Y = 5; }
+            else if (ano <= 2199) { X = 24; Y = 6; }
+            else if (ano <= 2299) { X = 24; Y = 7; }
 
             a = ano % 19;
             b = ano % 4;
@@ -199,6 +126,46 @@ namespace _17_Calendario
             domingoDePascoa = new DateTime(ano, mes, dia);
 
             return domingoDePascoa;
+        }
+
+        public void ImprimirCalendario()
+        {
+            Console.WriteLine($"\nCalendário de " +
+                                $"{primeiroDiaMes.ToString("MMMM")} de {ano}");
+
+            Console.WriteLine("DOM\tSEG\tTER\tQUA\tQUI\tSEX\tSAB");
+
+            List<Feriado> diasFeriados = RetornaFeriados();
+
+            for (int semana = 0; semana < 6; semana++)
+            {
+                for (int diaSemana = 0; diaSemana < 7; diaSemana++)
+                {
+                    if (calendario[semana, diaSemana] != 0)
+                    {
+                        if (diasFeriados.Any(feriado => feriado != null && feriado.Dia == calendario[semana, diaSemana]) || (DiaDaSemana)diaSemana == DiaDaSemana.Domingo)
+                            Console.ForegroundColor = ConsoleColor.Red;
+
+                        Console.Write(calendario[semana, diaSemana].ToString("D2") + "\t");
+
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write("\t");
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            Console.Write("\nFeriados: ");
+
+            diasFeriados.Sort();
+            foreach (Feriado diaFeriado in diasFeriados)
+            {
+                if (diaFeriado != null)
+                    Console.Write($"{diaFeriado.Dia:D2}-{diaFeriado.Descricao} \t");
+            }
         }
     }
 }
